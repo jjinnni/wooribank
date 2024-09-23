@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Button Animated UI</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .toggle {
+            display: inline-flex;
+            position: relative;
+            border: 2px solid #007bff;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+        .toggle button {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            color: #007bff;
+            font-size: 16px;
+            cursor: pointer;
+            outline: none;
+            position: relative;
+            z-index: 1;
+        }
+        .toggle .background {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 50%;
+            background-color: #007bff;
+            border-radius: 25px;
+            transition: transform 0.3s ease;
+            z-index: 0;
+        }
+        .toggle .background.login {
+            transform: translateX(0%);
+        }
+        .toggle .background.signup {
+            transform: translateX(100%);
+        }
+        .toggle button.active {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="toggle">
+        <div class="background login"></div>
+        <button type="button" id="loginButton" class="active">로그인</button>
+        <button type="button" id="signupButton">회원가입</button>
+    </div>
+
+    <script>
+        const loginButton = document.getElementById('loginButton');
+        const signupButton = document.getElementById('signupButton');
+        const background = document.querySelector('.toggle .background');
+
+        loginButton.addEventListener('click', () => {
+            background.classList.remove('signup');
+            background.classList.add('login');
+            loginButton.classList.add('active');
+            signupButton.classList.remove('active');
+        });
+
+        signupButton.addEventListener('click', () => {
+            background.classList.remove('login');
+            background.classList.add('signup');
+            signupButton.classList.add('active');
+            loginButton.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
